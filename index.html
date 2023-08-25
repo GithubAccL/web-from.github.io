@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CapGen Form</title>
+  <style>
+    /* Add your custom styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .description {
+      margin-top: 20px;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .submit-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CapGen Form</h1>
+    <form id="myForm">
+      <label for="dropdown1">Dropdown 1:</label>
+      <select id="dropdown1" name="dropdown1">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+
+      <label for="dropdown2">Dropdown 2:</label>
+      <select id="dropdown2" name="dropdown2">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+
+      <label for="dropdown3">Dropdown 3:</label>
+      <select id="dropdown3" name="dropdown3">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+
+      <label for="dropdown4">Dropdown 4:</label>
+      <select id="dropdown4" name="dropdown4">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+
+      <div class="description">
+        <p>insert and then submit.</p>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Handle form submission
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form from submitting
+      
+      // Get the selected values from the drop-down menus
+      var dropdown1Value = document.getElementById("dropdown1").value;
+      var dropdown2Value = document.getElementById("dropdown2").value;
+      var dropdown3Value = document.getElementById("dropdown3").value;
+      var dropdown4Value = document.getElementById("dropdown4").value;
+      
+      // Prepare the data to send to the backend
+      var data = {
+        dropdown1: dropdown1Value,
+        dropdown2: dropdown2Value,
+        dropdown3: dropdown3Value,
+        dropdown4: dropdown4Value
+      };
+      
+      // Send an HTTP POST request to the backend
+      fetch("/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          alert("Form submitted successfully!");
+        } else {
+          alert("Form submission failed.");
+        }
+      })
+      .catch(function(error) {
+        console.error("Error:", error);
+      });
+    });
+  </script>
+</body>
+</html>
